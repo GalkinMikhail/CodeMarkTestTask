@@ -18,6 +18,8 @@ Example:
   java -DDB_NAME=SoapService -DDB_USER=postgres -DDB_PASSWORD=postgres -jar codeMarkTestTask-0.0.1-SNAPSHOT.jar
 ```  
 # API documentation  
+App will be available at  
+`localhost:8080/api`  
 ## Add roles to the database
 insert into roles(id,name) values (1,'Админ');  
 insert into roles(id,name) values (2,'Оператор');  
