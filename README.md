@@ -196,8 +196,8 @@ Request:
     <us:UpdateUserRequest>
         <us:users>
             <us:login>galkin</us:login>
-            <us:name>Mikhail</us:name>
-            <us:password>Root1</us:password>
+            <us:name>updatedData</us:name>
+            <us:password>updatedData1</us:password>
             <us:roleID>1</us:roleID>
         </us:users>
     </us:UpdateUserRequest>
