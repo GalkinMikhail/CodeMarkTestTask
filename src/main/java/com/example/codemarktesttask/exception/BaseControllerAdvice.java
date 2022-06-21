@@ -27,6 +27,11 @@ public class BaseControllerAdvice {
         return response(HttpStatus.BAD_REQUEST, ex);
     }
 
+    @ExceptionHandler
+    public Object InvalidData(InvalidDataException ex){
+        return response(HttpStatus.BAD_REQUEST,ex);
+    }
+
     private Object response(HttpStatus status, AbstractException ex) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
