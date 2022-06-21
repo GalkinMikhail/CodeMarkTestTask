@@ -122,4 +122,16 @@ public class UsersEndpoint {
         return response;
     }
 
+    @Transactional
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "CreateRoleRequest")
+    @ResponsePayload
+    public CreateRoleResponse createRole(@RequestPayload CreateRoleRequest request){
+        CreateRoleResponse response = new CreateRoleResponse();
+        Role role = new Role();
+        role.setName(request.getName());
+        roleRepository.save(role);
+        response.setMessage("Role " + request.getName() + " created successfully");
+        return response;
+    }
+
 }

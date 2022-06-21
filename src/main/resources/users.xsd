@@ -85,7 +85,21 @@
         </xs:complexType>
     </xs:element>
 
+    <xs:element name="CreateRoleRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
+    <xs:element name="CreateRoleResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="message" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
     <xs:complexType name="Users">
         <xs:sequence>
