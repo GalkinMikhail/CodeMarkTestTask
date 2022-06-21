@@ -56,8 +56,6 @@ Request:
                 <us:name>Mikhail</us:name>
                 <us:password>Root1</us:password>
                 <us:roleID>1</us:roleID>
-                <us:roleID>2</us:roleID>
-                <us:roleID>3</us:roleID>
             </us:users>
         </us:CreateUserRequest>
     </soapenv:Body>
