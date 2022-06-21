@@ -9,18 +9,15 @@ Develop a SOAP service and methods of working with data. Make methods that will:
 On the backend, for the methods of adding and editing, a formatological control of the values received should be performed. The fields name, login, password are mandatory, password contains a letter in uppercase and a digit.  
 
 # Instructions for deploying the application  
-Run the attached Jar file using the command:  
+The project uses Docker, so initially you have to build and run the image using docker-compose.
+
+Go to the project directory and then, use:  
 ```bash  
-  java -DDB_NAME=db_name -DDB_USER=db_user -DDB_PASSWORD=db_pass -jar codeMarkTestTask-0.0.1-SNAPSHOT.jar
+  docker-compose up  
 ```  
-Example:  
-```bash  
-  java -DDB_NAME=SoapService -DDB_USER=postgres -DDB_PASSWORD=postgres -jar codeMarkTestTask-0.0.1-SNAPSHOT.jar
-```  
-# API documentation  
 App will be available at  
-`localhost:8080/api`  
-  
+`localhost:8080/api`, if you use Docker Desktop  
+# API documentation    
 ## Example of user creation  
 ### Add roles to the database  
 Request:  
