@@ -2,6 +2,7 @@ package com.example.codemarktesttask.endpoint;
 
 
 import com.example.codemarktesttask.exception.EmptyDataException;
+import com.example.codemarktesttask.exception.InvalidDataException;
 import com.example.codemarktesttask.exception.InvalidPasswordException;
 import com.example.codemarktesttask.interfaces.*;
 import com.example.codemarktesttask.model.Role;
@@ -37,6 +38,9 @@ public class UsersEndpoint {
     @ResponsePayload
     public CreateUserResponse create(@RequestPayload CreateUserRequest request) {
         CreateUserResponse response = new CreateUserResponse();
+        if(userRepository.findById(request.getUsers().getLogin()).isPresent()) {
+            throw new InvalidDataException("User with login " + request.getUsers().getLogin() + " already exists","user already exists");
+        }
         User user = new User();
         if (request.getUsers().getLogin().length() == 0 || request.getUsers().getPassword().length() == 0 || request.getUsers().getName().length() == 0) {
             throw new EmptyDataException("Fields name, login, password cannot be empty", "invalid data");
@@ -68,6 +72,9 @@ public class UsersEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "GetUserRequest")
     @ResponsePayload
     public GetUserResponse getUser(@RequestPayload GetUserRequest request) {
+        if(!userRepository.findById(request.getLogin()).isPresent()) {
+            throw new InvalidDataException("User with login " + request.getLogin() + " does not exists","user does not exists");
+        }
         GetUserResponse response = new GetUserResponse();
         Users user = new Users();
         BeanUtils.copyProperties(userService.getUser(request.getLogin()), user);
@@ -85,6 +92,9 @@ public class UsersEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "UpdateUserRequest")
     @ResponsePayload
     public UpdateUserResponse update(@RequestPayload UpdateUserRequest request) {
+        if(!userRepository.findById(request.getUsers().getLogin()).isPresent()) {
+            throw new InvalidDataException("User with login " + request.getUsers().getLogin() + " does not exists","user does not exists");
+        }
         if (request.getUsers().getLogin().length() == 0 || request.getUsers().getPassword().length() == 0 || request.getUsers().getName().length() == 0) {
             throw new EmptyDataException("Fields login,name, password cannot be empty", "invalid data");
         }
@@ -116,6 +126,9 @@ public class UsersEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "DeleteUserRequest")
     @ResponsePayload
     public DeleteUserResponse deleteUser(@RequestPayload DeleteUserRequest request) {
+        if(!userRepository.findById(request.getLogin()).isPresent()) {
+            throw new InvalidDataException("User with login " + request.getLogin() + " does not exists","user does not exists");
+        }
         DeleteUserResponse response = new DeleteUserResponse();
         userService.deleteUserByLogin(request.getLogin());
         response.setMessage("User with login: " + request.getLogin() + " was deleted successfully");
@@ -126,6 +139,9 @@ public class UsersEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "CreateRoleRequest")
     @ResponsePayload
     public CreateRoleResponse createRole(@RequestPayload CreateRoleRequest request){
+        if (roleRepository.findByName(request.getName()) != null){
+            throw new InvalidDataException("Role " + request.getName() + " already exists","role already exists");
+        }
         CreateRoleResponse response = new CreateRoleResponse();
         Role role = new Role();
         role.setName(request.getName());
