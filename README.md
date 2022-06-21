@@ -20,12 +20,32 @@ Example:
 # API documentation  
 App will be available at  
 `localhost:8080/api`  
-## Add roles to the database
-insert into roles(id,name) values (1,'Админ');  
-insert into roles(id,name) values (2,'Оператор');  
-insert into roles(id,name) values (3,'Аналитик');  
   
 ## Example of user creation  
+### Add roles to the database  
+Request:  
+```xml  
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:us="http://soap.rca/classc/courses">
+<soapenv:Header/>
+<soapenv:Body>
+    <us:CreateRoleRequest>
+        <us:name>Admin</us:name>
+    </us:CreateRoleRequest>
+</soapenv:Body>
+</soapenv:Envelope>
+```   
+Response:  
+```xml  
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP-ENV:Header/>
+    <SOAP-ENV:Body>
+        <ns2:CreateRoleResponse xmlns:ns2="http://soap.rca/classc/courses">
+            <ns2:message>Role Admin created successfully</ns2:message>
+        </ns2:CreateRoleResponse>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+```   
 ### Request with correct data  
 Request:  
 ```xml
