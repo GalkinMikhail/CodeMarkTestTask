@@ -13,6 +13,7 @@ import com.example.codemarktesttask.service.interfaces.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -55,6 +56,7 @@ public class UserServiceImpl implements UserService {
         return response;
     }
 
+    @Transactional
     @Override
     public DeleteUserResponse deleteUserByLogin(DeleteUserRequest request) {
         if (!userRepository.findById(request.getLogin()).isPresent()) {
@@ -66,6 +68,7 @@ public class UserServiceImpl implements UserService {
         return response;
     }
 
+    @Transactional
     @Override
     public CreateUserResponse createUser(CreateUserRequest request) {
         CreateUserResponse response = new CreateUserResponse();
@@ -91,6 +94,7 @@ public class UserServiceImpl implements UserService {
         return response;
     }
 
+    @Transactional
     @Override
     public UpdateUserResponse update(UpdateUserRequest request) {
         if (!userRepository.findById(request.getUsers().getLogin()).isPresent()) {

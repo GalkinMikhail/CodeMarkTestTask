@@ -8,6 +8,7 @@ import com.example.codemarktesttask.repository.RoleRepository;
 import com.example.codemarktesttask.service.interfaces.RoleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
@@ -16,7 +17,7 @@ public class RoleServiceImpl implements RoleService {
 
     private final RoleRepository roleRepository;
 
-
+    @Transactional
     @Override
     public CreateRoleResponse createRole(CreateRoleRequest request) {
         if (roleRepository.findByName(request.getName()) != null) {

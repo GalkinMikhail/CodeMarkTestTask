@@ -5,7 +5,6 @@ import com.example.codemarktesttask.interfaces.*;
 import com.example.codemarktesttask.service.implement.RoleServiceImpl;
 import com.example.codemarktesttask.service.implement.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
@@ -20,7 +19,7 @@ public class UsersEndpoint {
     private final UserServiceImpl userService;
     private final RoleServiceImpl roleService;
 
-    @Transactional
+
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "CreateUserRequest")
     @ResponsePayload
     public CreateUserResponse create(@RequestPayload CreateUserRequest request) {
@@ -40,21 +39,18 @@ public class UsersEndpoint {
         return userService.getUser(request);
     }
 
-    @Transactional
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "UpdateUserRequest")
     @ResponsePayload
     public UpdateUserResponse update(@RequestPayload UpdateUserRequest request) {
         return userService.update(request);
     }
 
-    @Transactional
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "DeleteUserRequest")
     @ResponsePayload
     public DeleteUserResponse deleteUser(@RequestPayload DeleteUserRequest request) {
         return userService.deleteUserByLogin(request);
     }
 
-    @Transactional
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "CreateRoleRequest")
     @ResponsePayload
     public CreateRoleResponse createRole(@RequestPayload CreateRoleRequest request) {
