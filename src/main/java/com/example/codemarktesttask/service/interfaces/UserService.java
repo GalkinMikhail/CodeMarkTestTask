@@ -1,13 +1,18 @@
 package com.example.codemarktesttask.service.interfaces;
 
+import com.example.codemarktesttask.interfaces.*;
 import com.example.codemarktesttask.model.User;
 
 import java.util.List;
 
 public interface UserService {
-    List<String> getAllUsers();
+    GetAllUsersResponse getAllUsers();
 
-    User getUser(String login);
+    GetUserResponse getUser(GetUserRequest request);
 
-    void deleteUserByLogin(String login);
+    DeleteUserResponse deleteUserByLogin(DeleteUserRequest request);
+
+    CreateUserResponse createUser(CreateUserRequest request);
+
+    UpdateUserResponse update(UpdateUserRequest request);
 }
